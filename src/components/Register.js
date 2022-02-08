@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const USER_REGEX = /^[A-z][A-z0-9-_]{6,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-const REGISTER_URL = '/api/register';
+// const REGISTER_URL = '/api/register';
 
 const Register = () => {
     const userRef = useRef();
@@ -108,7 +108,7 @@ const Register = () => {
                 <section>
                     <h1>Success!</h1>
                     <p>
-                        <a href="#">Sign In</a>
+                        <Link>Sign In</Link>
                     </p>
                 </section>
             ) : (
