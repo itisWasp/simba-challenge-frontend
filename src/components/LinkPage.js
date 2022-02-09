@@ -4,16 +4,14 @@ import React from 'react';
 const LinkPage = () => {
     return (
         <section>
-            <h1>Welcome :)</h1>
+            <h3>Your Transaction History :)</h3>
             <br />
-            <h2>Public</h2>
-            <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
+            <p>Your History Here, Still Under Development!</p>
+
             <br />
-            <h2>Private</h2>
+
             <Link to="/">Home</Link>
-            <Link to="/transactions">Create A New Transaction</Link>
-            <Link to="/admin">History</Link>
+
         </section>
     )
 }

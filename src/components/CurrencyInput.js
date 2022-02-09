@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
-import './currencyInput.css';
+import React from 'react';
+// import './currencyInput.css';
 
 function CurrencyInput(props){
     return (
-        <div className="group">
-            <input type="text" value={props.amount} onChange={ev => props.onAmountChange(ev.target.value)}/>
+        <div className="flexGrow">
+            <input id="currencyInput" type="text" value={props.amount} onChange={ev => props.onAmountChange(ev.target.value)}/>
 
             <select value={props.currency} onChange={ev => props.onCurrencyChange(ev.target.value)}>
 
