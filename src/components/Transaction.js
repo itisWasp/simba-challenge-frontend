@@ -21,20 +21,16 @@ const Editor = () => {
 
     useEffect(() => {
 
-      document.head.innerHTML+=`
-      <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    `
-
         axios
           .get(
-            "http://data.fixer.io/api/latest?access_key=43f44fbf1a78095e7065cd003d4593c5&format=1"
+            "https://api.fastforex.io/fetch-all?api_key=5831c2e287-d91e6b3cdb-r71569"
           )
           .then((response) => {
             setRates(
               {
-                "USD" : response.data.rates.USD,
-                "EUR" : response.data.rates.EUR,
-                "NGN" : response.data.rates.NGN
+                "USD" : response.data.results.USD,
+                "EUR" : response.data.results.EUR,
+                "NGN" : response.data.results.NGN
               }
             )
           });
