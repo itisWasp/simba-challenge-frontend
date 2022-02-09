@@ -20,6 +20,11 @@ const Editor = () => {
     };
 
     useEffect(() => {
+
+      document.head.innerHTML+=`
+      <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    `
+
         axios
           .get(
             "http://data.fixer.io/api/latest?access_key=43f44fbf1a78095e7065cd003d4593c5&format=1"
