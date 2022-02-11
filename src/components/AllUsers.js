@@ -6,10 +6,10 @@ function AllUsersInput(props){
     return (
         <div className="flexGrow">
             
-            <select value={props.user} onChange={ev => props.onUserChange(ev.target.value)}>
+            <select value={props.user} onChange={event => props.onUserChange(event.target.value)}>
 
                 {props.users.map((user => 
-                    <option value={user}>{user}</option>
+                    <option value={user.username}>{user.username}</option>
                 ))}
 
             </select>
@@ -18,7 +18,7 @@ function AllUsersInput(props){
 }
 
 AllUsersInput.propTypes = {
-    user: PropTypes.string,
+    user: PropTypes.object,
     users: PropTypes.array,
     onUserChange : PropTypes.func,
 }

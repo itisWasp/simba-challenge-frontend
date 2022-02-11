@@ -63,6 +63,18 @@ form {
     padding-bottom: 1rem;
 }
 
+.container {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.4);
+}
+.wrapper {
+  width: 80%;
+  margin: auto;
+}
+
 a, a:visited {
     color: #fff;
 }

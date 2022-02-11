@@ -25,7 +25,7 @@ const Home = () => {
 
     const config = {
         headers: {
-            'Auth-Token' : localStorage.getItem('token'),
+            'auth-token' : localStorage.getItem('token'),
         }
     };
 
