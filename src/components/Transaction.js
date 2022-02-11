@@ -12,12 +12,20 @@ const Editor = () => {
     const [currency2, setCurrency2] = useState("EUR");
     const [users, setUsers] = useState([]);
     const [rates, setRates] = useState([]);
+    const[userValue, setUserValue] =  useState("Israel");
+    // const [user, setUser]
 
     const config = {
         headers: {
-            'Auth-Token' : localStorage.getItem('token'),
+            'auth-token' : localStorage.getItem('token'),
         }
     };
+
+    const configTransactions = {
+      headers: {
+          "auth-token" : localStorage.getItem('token')
+      }
+  };
 
     useEffect(() => {
 
@@ -48,12 +56,8 @@ const Editor = () => {
             });
 
             console.log(response.data)
-            isMounted && setUsers({
-              Israel : response.data.username,
-              Robert : response.data.username,
-              itisWasp : response.data.username,
-              TestUser : response.data.username
-            })
+            isMounted && setUsers(response.data)
+            console.log(response.data)
         }
 
         getUser();
@@ -96,9 +100,39 @@ const Editor = () => {
         setCurrency2(currency2);
       }
 
-      function handleUserChange(user) {
-        console.log(user);
-      }
+      // function handleUserChange() {
+      //   console.log(userValue);
+      // }
+
+      const accessToken = localStorage.getItem('token');
+
+      axios.interceptors.request.use(
+        config => {
+          config.headers["auth-token"] = accessToken;
+          return config;
+        },
+        error => {
+          return Promise.reject(error);
+        }
+      )
+
+        const SendingMoney = async (res) => {
+          await axios.post(`https://simba-challenge-backend.herokuapp.com/api/transaction`, {
+            Receiver : userValue,
+            SendingAmount : amount1,
+            ConvertedAmount : amount2,
+            SendingCurrency : currency1,
+            ReceivingCurrency : currency2
+          }).catch(function (error) {
+            if (error.response.status == 400) {
+              alert(error.response.data.message);
+              console.log(error.response.status);
+              console.log(error.response.headers);
+            }
+          });
+          // console.log("Data to be sent -------->>>>>>>>",response);
+          // console.log("Configaration Route ------->>>>>>>", config);
+        }
     
       return (
         <section>
@@ -132,13 +166,24 @@ const Editor = () => {
 
           <h4>Choose a User to send money to</h4>
           <AllUsersInput
-              users = {Object.keys(users)}
-              onUserChange = {handleUserChange}
+              users = {users}
+              onUserChange = {(value) => setUserValue(value)}
           />
+
+          {/* <article>
+             <h2>Users List</h2>
+               {users?.length
+                   ? (
+                       <ul>
+                           {users.map((user, i) => <li key={i}>{user?.username}</li>)}
+                       </ul>
+                   ) : <p>No users to display</p>
+               }
+           </article> */}
 
             <div className="flexGrow">
             <Link to="/linkpage">
-               <button >
+               <button onClick={SendingMoney}>
                   Send
                </button>
             </Link>
